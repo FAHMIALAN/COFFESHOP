@@ -1,0 +1,20 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa; /* Sedikit abu-abu agar tidak terlalu silau */
+}
+
+/* Efek hover pada kartu produk */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Style untuk badge status pembayaran di admin */
+.badge {
+    font-size: 0.85em;
+    padding: 0.5em 0.7em;
+}
