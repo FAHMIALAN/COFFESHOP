@@ -19,7 +19,11 @@
         <?php foreach ($produk as $p): ?>
         <div class="col">
             <div class="card h-100 shadow-sm border-0">
-                <img src="<?= base_url('assets/images/' . esc($p['gambar'])) ?>" class="card-img-top" alt="<?= esc($p['nama_produk']) ?>" style="height: 200px; object-fit: cover;">
+                <img src="<?= base_url('assets/images/' . esc($p['gambar'])) ?>" 
+                class="card-img-top" alt="
+                <?= esc($p['nama_produk']) ?>" 
+                style="max-width: 350px; object-fit: cover;">
+
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title"><?= esc($p['nama_produk']) ?></h5>
                     <p class="card-text text-muted small"><?= esc($p['kategori']) ?></p>

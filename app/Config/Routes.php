@@ -55,7 +55,8 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
 
         // Rute Pesanan & Laporan
         $routes->get('pesanan', 'Pesanan::index');
-        $routes->post('pesanan/update_status', 'Pesanan::updateStatus'); // <-- PERBAIKAN DI SINI
+        $routes->post('pesanan/update_status', 'Pesanan::updateStatus'); 
         $routes->get('laporan', 'Laporan::index');
+        $routes->get('laporan/export_csv', 'Laporan::exportCsv'); 
     });
 });

@@ -4,7 +4,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <img src="<?= base_url('assets/images/' . esc($produk['gambar'])) ?>" class="img-fluid rounded shadow-lg" alt="<?= esc($produk['nama_produk']) ?>">
+            <img src="<?= base_url('assets/images/' . esc($produk['gambar'])) ?>" 
+            class="img-fluid rounded shadow-lg" alt="
+            <?= esc($produk['nama_produk']) ?>"
+            style="max-width: 450px; display: block; margin: auto;">
         </div>
         <div class="col-md-6">
             <h1 class="fw-bold"><?= esc($produk['nama_produk']) ?></h1>

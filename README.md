@@ -1,68 +1,162 @@
-# CodeIgniter 4 Application Starter
+# ☕ Aplikasi Web Coffee Shop v1.0
 
-## What is CodeIgniter?
+Ini adalah aplikasi web e-commerce sederhana untuk sebuah **Coffee Shop** yang dibangun menggunakan framework **CodeIgniter 4**. Aplikasi ini memiliki fitur katalog produk, keranjang belanja, serta sistem pembayaran manual dengan upload bukti transfer.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+---
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## 🚀 Fitur Utama
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+### 👨‍💻 Admin Panel
+- 🔐 **Autentikasi**: Login dan registrasi aman untuk admin.
+- 📊 **Dashboard**: Ringkasan data produk dan pesanan.
+- 📦 **CRUD Produk**: Tambah, lihat, edit, dan hapus produk kopi (nama, harga, deskripsi, stok, gambar).
+- 📑 **Manajemen Pesanan**: Pantau pesanan masuk secara real-time.
+- 🧾 **Verifikasi Pembayaran**: Lihat bukti transfer dari pelanggan.
+- 🔄 **Update Status Pesanan**: Ubah status secara manual *(Menunggu Konfirmasi, Diproses, Dikirim, Selesai, Dibatalkan)*.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+### 🛍️ Halaman User (Pembeli)
+- 🛒 **Katalog Produk**: Tampilkan seluruh produk kopi.
+- 🔍 **Detail Produk**: Lihat informasi detail tiap produk.
+- 🧺 **Keranjang Belanja**: Tambah/hapus produk, dan kosongkan keranjang.
+- 📝 **Form Checkout**: Input nama, nomor HP, dan alamat.
+- 💳 **Pembayaran Manual**: Tampilkan rekening, QRIS, dan form upload bukti.
+- 📦 **Riwayat Pesanan**: Lacak status pesanan berdasarkan nomor HP.
 
-## Installation & updates
+---
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## 🛠️ Teknologi yang Digunakan
+- **Framework**: CodeIgniter 4
+- **Bahasa**: PHP 8+
+- **Database**: MySQL / MariaDB
+- **Frontend**: Bootstrap 5
+- **Server Lokal**: Laragon (direkomendasikan) atau XAMPP
+- **Manajemen Dependensi**: Composer
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+---
 
-## Setup
+## 🗂️ Struktur Folder
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+```
+/coffeeshopp/
+│
+├── app/
+│   ├── Controllers/
+│   │   ├── Admin/
+│   │   ├── Home.php
+│   │   ├── Cart.php
+│   │   ├── Checkout.php
+│   │   └── Pembayaran.php
+│   ├── Models/
+│   └── Views/
+│       ├── layout/
+│       ├── admin/
+│       └── user/
+│
+├── public/
+│   ├── assets/
+│   │   ├── css/
+│   │   ├── js/
+│   │   ├── images/
+│   │   └── bukti_pembayaran/
+│   └── .htaccess
+│
+├── writable/
+├── .env
+├── composer.json
+└── spark
+```
 
-## Important Change with index.php
+---
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+## ⚙️ Cara Instalasi & Setup Lokal
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### 1. Clone Repository
+```bash
+git clone https://github.com/FAHMIALAN/COFFEESHOOPP.git
+cd COFFEESHOOPP
+```
 
-**Please** read the user guide for a better explanation of how CI4 works!
+### 2. Install Dependensi
+> Pastikan Composer sudah terinstall di sistem Anda.
 
-## Repository Management
+```bash
+composer install
+```
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+### 3. Konfigurasi Environment
+- Salin file `env` ke `.env`
+- Sesuaikan pengaturan:
+  - `database.default.*`
+  - `app.baseURL` (contoh: `http://localhost:8080/`)
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+### 4. Setup Database
+- Buat database MySQL: `db_coffeeshop`
+- Jalankan migrasi:
+  ```bash
+  php spark migrate
+  ```
+- Jalankan seeder (akun admin default):
+  ```bash
+  php spark db:seed AdminSeeder
+  ```
 
-## Server Requirements
+### 5. Siapkan Aset Gambar
+- Buat folder `bukti_pembayaran` di `public/assets/`
+- Letakkan gambar QRIS dan beri nama `qris_placeholder.png` di `public/assets/images/`
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+### 6. Jalankan Server
+```bash
+php spark serve
+```
+Akses aplikasi di `http://localhost:8080`
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+> Jika menggunakan **Laragon**, cukup start dan buka `http://coffeeshopp.test`
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+---
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+## 🧪 Cara Penggunaan
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+### 🔑 Sebagai Admin
+1. Kunjungi `/admin/login`
+2. Login:
+   - **Username**: `admin`
+   - **Password**: `password123`
+3. Tambahkan produk melalui menu **Produk**
+
+### 🛍️ Sebagai Pembeli
+1. Akses halaman utama
+2. Pilih produk dan masukkan ke keranjang
+3. Checkout dan upload bukti pembayaran
+
+### 📦 Admin Cek Pesanan
+1. Kembali ke admin panel
+2. Lihat halaman **Manajemen Pesanan**
+3. Verifikasi bukti pembayaran dan ubah status pesanan
+
+---
+
+## 📄 Lisensi
+Proyek ini bersifat open-source dan bebas digunakan untuk keperluan edukasi dan pengembangan.
+
+---
+
+## 🙋‍♂️ Kontribusi
+Ingin bantu mengembangkan? Silakan fork repo ini dan kirimkan pull request!
+
+---
+
+Terima kasih sudah menggunakan **Aplikasi Coffee Shop v1.0** ☕
+
+---
+## Tampilan User
+
+<img src="Screenshot/home.png" width="300"> <img src="Screenshot/detail.png" width="300"> 
+<img src="Screenshot/keranjang.png" width="300"> <img src="Screenshot/payment.png" width="300"> 
+<img src="Screenshot/riwayat.jpg" width="300"> 
+
+---
+## Tampilan Admin
+<img src="Screenshot/dashboard.png" width="300"> <img src="Screenshot/produk.png" width="300"> 
+<img src="Screenshot/pesanan.png" width="300"> <img src="Screenshot/laporan.png" width="300"> 
+
+---

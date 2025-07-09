@@ -3,8 +3,8 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\ProdukModel;   // Tambahkan ini
-use App\Models\PesananModel;  // Tambahkan ini
+use App\Models\ProdukModel;   
+use App\Models\PesananModel;  
 
 class Dashboard extends BaseController
 {
