@@ -11,7 +11,7 @@
             <div class="card text-white bg-primary mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Total Produk</h5>
-                    <p class="card-text fs-3">--</p> <!-- Data bisa diisi dari controller -->
+                    <p class="card-text fs-3 fw-bold"><?= $total_produk ?></p>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="card text-white bg-success mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Pesanan Berhasil</h5>
-                    <p class="card-text fs-3">--</p> <!-- Data bisa diisi dari controller -->
+                    <p class="card-text fs-3 fw-bold"><?= $pesanan_berhasil ?></p>
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
             <div class="card text-white bg-warning mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Pesanan Pending</h5>
-                    <p class="card-text fs-3">--</p> <!-- Data bisa diisi dari controller -->
+                    <p class="card-text fs-3 fw-bold"><?= $pesanan_pending ?></p>
                 </div>
             </div>
         </div>

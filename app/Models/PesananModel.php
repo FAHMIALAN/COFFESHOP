@@ -17,6 +17,7 @@ class PesananModel extends Model
         'total_harga',
         'status_pembayaran',
         'tipe_pembayaran',
+        'bukti_pembayaran', // <-- TAMBAHKAN BARIS INI
         'waktu_pesan'
     ];
 }

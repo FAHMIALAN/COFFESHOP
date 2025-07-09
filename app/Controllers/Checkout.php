@@ -7,6 +7,9 @@ use App\Models\DetailPesananModel;
 
 class Checkout extends BaseController
 {
+    /**
+     * Menampilkan halaman checkout dengan form data pembeli.
+     */
     public function index()
     {
         $cart = session('cart') ?? [];
@@ -21,6 +24,9 @@ class Checkout extends BaseController
         return view('user/checkout', $data);
     }
 
+    /**
+     * Memproses data checkout, menyimpan ke DB, dan mengarahkan ke halaman pembayaran manual.
+     */
     public function process()
     {
         $cart = session('cart') ?? [];
@@ -28,21 +34,18 @@ class Checkout extends BaseController
             return redirect()->to('/');
         }
         
-        // --- BAGIAN VALIDASI YANG DITAMBAHKAN ---
-        // Aturan validasi yang harus dipenuhi
+        // Aturan validasi
         $rules = [
             'nama_pembeli' => 'required|min_length[3]',
             'no_hp'        => 'required|numeric|min_length[10]',
             'alamat'       => 'required|min_length[10]'
         ];
 
-        // Jalankan validasi. Jika gagal, kembali ke form dengan error
         if (!$this->validate($rules)) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
-        // --- AKHIR BAGIAN VALIDASI ---
 
-        // Kode di bawah ini hanya akan jalan jika validasi berhasil
+        // Simpan data ke database
         $pesananModel = new PesananModel();
         $detailModel = new DetailPesananModel();
         
@@ -55,7 +58,7 @@ class Checkout extends BaseController
             'no_hp' => $this->request->getPost('no_hp'),
             'alamat' => $this->request->getPost('alamat'),
             'total_harga' => $totalHarga,
-            'status_pembayaran' => 'pending',
+            'status_pembayaran' => 'pending', // Status awal saat pesanan dibuat
         ]);
         $idPesanan = $pesananModel->getInsertID();
 
@@ -68,28 +71,10 @@ class Checkout extends BaseController
             ]);
         }
         
-        \Midtrans\Config::$serverKey = getenv('MIDTRANS_SERVER_KEY');
-        \Midtrans\Config::$isProduction = (bool)getenv('MIDTRANS_IS_PRODUCTION');
-        \Midtrans\Config::$clientKey = getenv('MIDTRANS_CLIENT_KEY');
+        // Kosongkan keranjang belanja
+        session()->remove('cart');
 
-        $transaction_details = ['order_id' => $orderId, 'gross_amount' => $totalHarga];
-        $customer_details = ['first_name' => $this->request->getPost('nama_pembeli'), 'phone' => $this->request->getPost('no_hp')];
-        $item_details = array_map(fn($item) => ['id' => $item['id'], 'price' => $item['price'], 'quantity' => $item['qty'], 'name' => $item['name']], $cart);
-
-        $transaction = ['transaction_details' => $transaction_details, 'customer_details' => $customer_details, 'item_details' => $item_details];
-        
-        try {
-            $snapToken = \Midtrans\Snap::getSnapToken($transaction);
-            session()->remove('cart');
-            return view('user/pembayaran', ['title' => 'Lanjutkan Pembayaran', 'snapToken' => $snapToken]);
-        } catch (\Exception $e) {
-            log_message('error', 'Midtrans Snap Token Error: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Gagal memproses pembayaran. Silakan coba lagi.');
-        }
-    }
-
-    public function success()
-    {
-        return view('user/pembayaran_sukses', ['title' => 'Pembayaran Berhasil']);
+        // Alihkan ke halaman pembayaran manual dengan mengirim order_id
+        return redirect()->to('/pembayaran/' . $orderId);
     }
 }

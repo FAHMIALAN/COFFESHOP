@@ -18,10 +18,10 @@ class ContentSecurityPolicy extends BaseConfig
 
     public array $scriptSrc = [
         'self',
-        'https://app.sandbox.midtrans.com', // Izin untuk Midtrans
-        'https://cdn.jsdelivr.net',         // Izin untuk Bootstrap JS
+        'https://app.sandbox.midtrans.com',
+        'https://cdn.jsdelivr.net',
         'unsafe-inline',
-        'unsafe-eval',                     // Izin untuk 'eval'
+        'unsafe-eval',
     ];
 
     public array $styleSrc = [
@@ -38,12 +38,21 @@ class ContentSecurityPolicy extends BaseConfig
 
     public array $frameSrc = [
         'self',
-        'https://app.sandbox.midtrans.com', // Izin untuk pop-up Midtrans
+        'https://app.sandbox.midtrans.com',
     ];
 
     public array $fontSrc = [
         'self',
         'https://fonts.gstatic.com',
         'https://cdn.jsdelivr.net',
+    ];
+
+    /**
+     * TAMBAHKAN BAGIAN INI
+     * Memberi izin ke JavaScript untuk membuat koneksi API ke Midtrans.
+     */
+    public array $connectSrc = [
+        'self',
+        'https://api.sandbox.midtrans.com',
     ];
 }

@@ -29,13 +29,18 @@
                     <p><strong>Total:</strong> Rp <?= number_format($p['total_harga'], 0, ',', '.') ?></p>
                     <p class="mb-0">
                         <strong>Status Pembayaran:</strong> 
-                        <?php if ($p['status_pembayaran'] == 'success'): ?>
-                            <span class="badge bg-success">Berhasil</span>
-                        <?php elseif ($p['status_pembayaran'] == 'pending'): ?>
-                            <span class="badge bg-warning">Menunggu Pembayaran</span>
-                        <?php else: ?>
-                            <span class="badge bg-danger">Gagal/Dibatalkan</span>
-                        <?php endif; ?>
+                        <?php
+                            // Logika baru untuk warna badge status yang lebih lengkap
+                            $status = $p['status_pembayaran'];
+                            $badge_class = 'bg-secondary'; // Default
+                            if ($status == 'pending') $badge_class = 'bg-warning text-dark';
+                            if ($status == 'menunggu konfirmasi') $badge_class = 'bg-info text-dark';
+                            if ($status == 'diproses') $badge_class = 'bg-primary';
+                            if ($status == 'dikirim') $badge_class = 'bg-primary';
+                            if ($status == 'selesai') $badge_class = 'bg-success';
+                            if ($status == 'dibatalkan') $badge_class = 'bg-danger';
+                        ?>
+                        <span class="badge <?= $badge_class ?>"><?= esc(ucwords(str_replace('_', ' ', $status))) ?></span>
                     </p>
                 </div>
             </div>
