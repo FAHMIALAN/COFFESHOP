@@ -72,8 +72,8 @@ Ini adalah aplikasi web e-commerce sederhana untuk sebuah **Coffee Shop** yang d
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/FAHMIALAN/COFFEESHOOPP.git
-cd COFFEESHOOPP
+git clone git@github.com:FAHMIALAN/COFFESHOP.git
+cd COFFEESHOP
 ```
 
 ### 2. Install Dependensi
