@@ -150,9 +150,9 @@ Terima kasih sudah menggunakan **Aplikasi Coffee Shop v1.0** ☕
 ---
 ## Tampilan User
 
-<img src="Screenshot/home.png" width="400"> <img src="Screenshot/detail.png" width="400"> 
-<img src="Screenshot/keranjang.png" width="400"> <img src="Screenshot/payment.png" width="400"> 
-<img src="Screenshot/riwayat.png" width="400"> 
+<img src="Screenshot/home.png" width="600"> <img src="Screenshot/detail.png" width="600"> 
+<img src="Screenshot/keranjang.png" width="600"> <img src="Screenshot/payment.png" width="400"> 
+<img src="Screenshot/riwayat.png" width="600"> 
 
 ---
 ## Tampilan Admin
