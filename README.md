@@ -72,7 +72,7 @@ Ini adalah aplikasi web e-commerce sederhana untuk sebuah **Coffee Shop** yang d
 
 ### 1. Clone Repository
 ```bash
-git clone git@github.com:FAHMIALAN/COFFESHOP.git
+https://github.com/FAHMIALAN/COFFESHOP.git
 cd COFFEESHOP
 ```
 
